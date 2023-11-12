@@ -1,0 +1,72 @@
+﻿@model Milieusysteem.Models.Choice
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Choice</h4>
+@if(Model != null)
+{
+    @for (int i = 0; i < Model.Choices.Count(); i++)
+    {
+        <p>
+            @*
+            <tr>
+
+    <td>*@
+                    <a> Keuze @(i + 1): @Model.Choices[i].ChoiceTekst|</a>
+                    <a asp-action="Edit" asp-route-id="@Model.Choices[i].Id">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@Model.Choices[i].Id">Delete</a>
+            @* </td>
+            </tr>
+        *@
+            
+        </p>
+    }
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="ClimateSurveyId" class="control-label"></label>
+                <select asp-for="ClimateSurveyId" class ="form-control" asp-items="ViewBag.ClimateSurveyId"></select>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ChoiceTekst" class="control-label"></label>
+                <input asp-for="ChoiceTekst" class="form-control" />
+                <span asp-validation-for="ChoiceTekst" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Advice" class="control-label"></label>
+                <input asp-for="Advice" class="form-control" />
+                <span asp-validation-for="Advice" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="AmountOfVotes" class="control-label"></label>
+                <input asp-for="AmountOfVotes" class="form-control" />
+                <span asp-validation-for="AmountOfVotes" class="text-danger"></span>
+            </div>*@
+            <p></p>
+            <div class="form-group">
+                <input type="submit" value="Maak nog een keuze" class="btn btn-primary" />
+            </div>
+            <p></p>
+        </form>
+        <div>
+            <a asp-action="ConfirmSurvey"><button type class="btn btn-primary">Sla enquete op</button></a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,57 @@
+﻿@model Milieusysteem.Models.Teacher
+@inject IHttpContextAccessor Storage;
+
+<h1>
+    Welkom @Model.Email @Storage.HttpContext.Session.GetString("LoggedInTeacherId")
+</h1>
+
+
+    <div>
+    <a asp-action="CreateClass"><button class="btn btn-primary">Creeer klas</button></a>
+    </div>
+
+<p></p>
+
+    <div>
+        <a asp-action="CreateSurvey"><button class="btn btn-primary">Creeer enquete</button></a>
+    @*<input type="button" < asp-controller="HomeController"  asp-action="CreateSurvey"  value="Maak enquete" class="btn btn-primary" />*@
+    </div>
+    <p></p>
+<div>
+    <a asp-action="ViewSurveys" asp-controller="ClimateSurveys"><button class="btn btn-primary">Bekijk enquetes</button></a>
+    @*<input type="button" < asp-controller="HomeController"  asp-action="CreateSurvey"  value="Maak enquete" class="btn btn-primary" />*@
+</div>
+<p></p>
+<main role="main">
+
+
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Classes.ToList())
+            {
+
+                <div class="col-md-4">
+                    <h2>@item.Name</h2>
+                    <p></p>
+                    <a asp-action="ClassPage"><button class="btn btn-primary">Ga naar klaspagina</button></a>
+                    <p></p>
+                    <p>
+                        <a asp-action ="DoSurvey" asp-route-id="@item.Id"><button class="btn btn-primary">Doe enquete</button></a>
+                    </p>
+                    <p></p>
+                    <p>
+                        <a asp-action="ViewSurveyOutcomes" asp-controller="Classes" asp-route-id="@item.Id"><button class="btn btn-primary">Bekijk enquete-uitkomsten</button></a>
+                    </p>
+                    <p></p>
+                    <p>
+                        <a asp-action="Edit" asp-controller="Classes" asp-route-id="@item.Id"><button class="btn btn-primary">Pas klas aan</button></a>
+                    </p>
+                    <p>
+                        <a asp-action="Delete" asp-controller="Classes" asp-route-id="@item.Id"><button class="btn btn-primary">Verwijder klas</button></a>
+                    </p>
+                </div>
+                
+            }
+        </div> 
+
+</main>

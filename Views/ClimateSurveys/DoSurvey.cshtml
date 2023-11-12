@@ -1,0 +1,22 @@
+﻿@model Milieusysteem.Models.ClimateSurvey;
+@inject IHttpContextAccessor Session;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h4>
+    Stemmen uitgebracht: @Session.HttpContext.Session.GetInt32("VoteAmount")
+</h4>
+<div class="container">
+<div class="row">
+@foreach(Choice choice in Model.SurveyChoices)
+{
+    <div class="col md-4">
+    <a asp-action="Vote" asp-route-id=@choice.Id><button class="btn btn-primary">@choice.ChoiceTekst</button></a>
+            </div>
+}
+    </div>
+</div>
+<a asp-action="ViewVoteResults"> <button class="btn btn-primary">Bekijk resultaten</button></a>

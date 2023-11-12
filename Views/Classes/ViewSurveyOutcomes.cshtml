@@ -1,0 +1,26 @@
+﻿@model Milieusysteem.Models.Class;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if(Model != null)
+{<div class="container">
+    <div class="row">
+    @foreach(ClimateSurvey survey in Model.FinishedSurveys)
+    {
+        <h4>@survey.SurveyQuestion</h4>
+        @foreach (Choice choice in survey.SurveyChoices)
+        {
+            <div class="col-md-4">
+                <p>@choice.ChoiceTekst @choice.AmountOfVotes</p>
+            </div>
+        }
+    }
+        </div>
+    </div>
+    <p></p>
+    <a asp-action="SurveyOutcomesToTeacherHome" asp-controller="ClimateSurveys"><button class="btn btn-primary">Terug naar dashbord</button></a>
+}

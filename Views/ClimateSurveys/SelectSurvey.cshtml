@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Milieusysteem.Models.ClimateSurvey>;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if(Model != null)
+{
+    <div class="container">
+    <div class="row">
+    @foreach(ClimateSurvey climateSurvey in Model)
+    {
+        <div class="col-md-4">
+        <h1>
+            @climateSurvey.SurveyQuestion;
+        </h1>
+        <a asp-action="DoSurvey" asp-route-id="@climateSurvey.Id"><button class="btn btn-primary">Selecteer enquete</button></a>
+                </div>
+    }
+        </div>
+    </div>
+}
